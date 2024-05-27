@@ -1,6 +1,10 @@
 {
     "firstname": "Emma",
     "lastname": "Dupont",
-    "email": "EmmaDupont16@gmail.com",
-    "password": "Emma1234!"
+    "email": "EmmaDupont22@gmail.com",
+    "password": "Emma123456!",
+    "address" : "12 rue des cerises",
+    "city" : "San Francisco",
+    "postcode" : "94016",
+    "phone_number" : "0607080910"
 }
