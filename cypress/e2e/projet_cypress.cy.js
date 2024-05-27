@@ -1,4 +1,6 @@
 describe('Site Magento', () => {
+  let userInfos = require('../fixtures/info.json')
+
   it('Vérification accès site Magento', () => {
     cy.visit('https://magento.softwaretestingboard.com/');
     cy.get('.logo').should("be.visible");
@@ -11,19 +13,17 @@ describe('Site Magento', () => {
     cy.url().should('eq', "https://magento.softwaretestingboard.com/customer/account/create/");
   });
 
-  it.only("Create an account", () => {
+  it("Create an account", () => {
     cy.visit("https://magento.softwaretestingboard.com/customer/account/create/");
-    cy.get("#firstname").type("Emma").should("have.value","Emma");
-cy.get("#lastname").type("Dupont").should("have.value","Dupont");
-cy.get("#email_address").type("EmmaDupont11@gmail.com").should("have.value","EmmaDupont11@gmail.com");
-cy.get("#password").type("Emma1234@").should("have.value","Emma1234@");
-cy.get("#password-confirmation").type("Emma1234@").should("have.value","Emma1234@");
-cy.get("#form-validate > .actions-toolbar > div.primary").click();
-cy.url().should("include","/customer/account/");
-cy.get(".message-success").should("be.visible").and ("contains.text","Thank you for registering with Main Website Store.");
-cy.get(".box-content").should("contains.text","Emma").and("contains.text","Dupont").and("contains.text","EmmaDupont11@gmail.com");
-
-
+    cy.get("#firstname").type(userInfos.firstname).should("have.value",userInfos.firstname);
+    cy.get("#lastname").type(userInfos.lastname).should("have.value", userInfos.lastname);
+    cy.get("#email_address").type(userInfos.email).should("have.value",userInfos.email);
+    cy.get("#password").type(userInfos.password).should("have.value", userInfos.password);
+    cy.get("#password-confirmation").type(userInfos.password).should("have.value", userInfos.password);
+    cy.get("#form-validate > .actions-toolbar > div.primary").click();
+    cy.url().should("include","/customer/account/");
+    cy.get(".message-success").should("be.visible").and ("contains.text","Thank you for registering with Main Website Store.");
+    cy.get(".box-content").should("contains.text", userInfos.firstname).and("contains.text", userInfos.lastname).and("contains.text", userInfos.email);
   });
 
   it("Sign In", () => {
